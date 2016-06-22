@@ -4,17 +4,15 @@
   "description": "Simple nodeJS api-model",
   "main": "./src/app.js",
   "scripts": {
-    "test": "echo 'test'",
-    "start": "npm run lint && npm run build && node ./build/app.js ",
+    "test": "mocha ./tests/* --compilers js:babel-register --recursive",
+    "start": "node ./build/app.js ",
     "build": "npm run clean && npm run lint && babel -d ./build ./src -s",
     "clean": "rm -rf build && rm -rf tmp",
     "lint": "eslint src",
     "monit": "pm2 kill && pm2 start build/app.js && pm2 logs",
-    "dev": "npm run lint && nodemon ./src/app.js --exec babel-node --presets es2015,stage-0"
+    "dev": "npm run lint && npm run test && nodemon ./src/app.js --exec babel-node --presets es2015,stage-0"
   },
-  "keywords": [
-
-  ],
+  "keywords": [],
   "author": "Marlon Gomes <marlon@getty.io>",
   "license": "ISC",
   "dependencies": {
@@ -31,7 +29,9 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.9.0",
+    "chai": "^3.5.0",
     "eslint": "^2.13.1",
+    "mocha": "^2.5.3",
     "morgan": "^1.7.0",
     "nodemon": "^1.9.2"
   }
