@@ -20,7 +20,14 @@ app.use(morgan('combined'))
 app.use(jwt({secret: 'secret'}));
 app.use((err, req, res, next) => {
   if(err.name === 'UnauthorizedError')
-    res.status(401).send({payload: {err: err.name, stack: 'Invalid Token'}});
+    res
+      .status(401)
+      .send({
+        payload: {
+          err: err.name,
+          stack: 'Invalid Token'
+        }
+      });
 })
 
 // Routes Import
