@@ -1,11 +1,16 @@
 {
-  "name": "websocket",
+  "name": "api-model",
   "version": "1.0.0",
-  "description": "Simple nodeJS websocket",
-  "main": "app.js",
+  "description": "Simple nodeJS api-model",
+  "main": "./src/app.js",
   "scripts": {
     "test": "echo 'test'",
-    "start": "nodemon ./src/app.js --exec babel-node --presets es2015,stage-0"
+    "start": "npm run build && node ./build/app.js ",
+    "build": "npm run clear && babel -d ./build ./src -s",
+    "clean": "rm -rf build && rm -rf tmp",
+    "lint" : "eslint src",
+    "monit": "pm2 kill && pm2 start build/app.js && pm2 logs",
+    "dev": "nodemon ./src/app.js --exec babel-node --presets es2015,stage-0"
   },
   "keywords": [
     "websocket",
@@ -28,6 +33,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.9.0",
     "eslint": "^2.13.1",
+    "morgan": "^1.7.0",
     "nodemon": "^1.9.2"
   }
 }
