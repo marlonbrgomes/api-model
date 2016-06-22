@@ -10,7 +10,8 @@
     "clean": "rm -rf build && rm -rf tmp",
     "lint": "eslint src",
     "monit": "pm2 kill && pm2 start build/app.js && pm2 logs",
-    "dev": "npm run lint && npm run test && nodemon ./src/app.js --exec babel-node --presets es2015,stage-0"
+    "dev": "npm run lint && npm run test && nodemon ./src/app.js --exec babel-node --presets es2015,stage-0",
+    "deploy": "./bin/deploy.sh EB_APP_NAME='' EB_APP_ENV='' S3_KEY='' S3_BUCKET='' "
   },
   "keywords": [],
   "author": "Marlon Gomes <marlon@getty.io>",
