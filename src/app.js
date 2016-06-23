@@ -1,8 +1,10 @@
-import cors       from 'cors';
-import morgan     from 'morgan';
-import express    from 'express';
-import jwt        from 'express-jwt';
-import bodyParser from 'body-parser';
+import cors         from 'cors';
+import opbeat       from 'opbeat';
+import morgan       from 'morgan';
+import express      from 'express';
+import jwt          from 'express-jwt';
+import bodyParser   from 'body-parser';
+import { getToken } from './v1/config/auth';
 
 // Routes
 import webservice from './v1/services/webservice/sample';
@@ -17,7 +19,12 @@ app.use(cors());
 app.use(morgan('combined'))
 
 // Validation of API token (API Security)
-app.use(jwt({secret: 'secret'}));
+app.use(jwt({
+  secret: 'secret',
+  requestProperty: 'auth',
+  getToken: getToken
+}));
+
 app.use((err, req, res, next) => {
   if(err.name === 'UnauthorizedError')
     res

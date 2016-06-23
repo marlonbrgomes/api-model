@@ -10,7 +10,7 @@ router.post('/sample', (req, response) => {
 
   else
     response
-      .send({payload: {text: 'Sample Success'} })
+      .send({payload: {text: 'Sample Success', user: req.auth} })
 });
 
 export default router;
