@@ -11,8 +11,10 @@
     "lint": "eslint src",
     "monit": "pm2 kill && pm2 start build/app.js && pm2 logs",
     "dev": "npm run lint && npm run test && nodemon ./src/app.js --exec babel-node --presets es2015,stage-0",
-    "deploy": "./bin/deploy.sh EB_APP_NAME='' EB_APP_ENV='' S3_KEY='' S3_BUCKET='' "
+    "deploy": "./bin/deploy.sh EB_APP_NAME='' EB_APP_ENV='' S3_KEY='' S3_BUCKET='' ",
+    "precommit-msg": "echo 'Pre-commit checks...' && exit 0"
   },
+  "pre-commit": ["precommit-msg", "build", "lint", "test"],
   "keywords": [],
   "author": "Marlon Gomes <marlon@getty.io>",
   "license": "ISC",
@@ -36,6 +38,7 @@
     "eslint": "^2.13.1",
     "mocha": "^2.5.3",
     "morgan": "^1.7.0",
-    "nodemon": "^1.9.2"
+    "nodemon": "^1.9.2",
+    "pre-commit": "^1.1.3"
   }
 }
