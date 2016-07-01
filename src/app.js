@@ -5,7 +5,7 @@ import express      from 'express';
 import jwt          from 'express-jwt';
 import bodyParser   from 'body-parser';
 import { getToken } from './v1/config/auth';
-
+console.log('ae');
 // Routes
 import webservice from './v1/services/webservice/sample';
 
