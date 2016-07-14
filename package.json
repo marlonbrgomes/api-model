@@ -12,9 +12,15 @@
     "monit": "pm2 kill && pm2 start build/app.js && pm2 logs",
     "dev": "npm run lint && npm run test && nodemon ./src/app.js --exec babel-node --presets es2015,stage-0",
     "deploy": "./bin/deploy.sh EB_APP_NAME='' EB_APP_ENV='' S3_KEY='' S3_BUCKET='' ",
-    "precommit-msg": "echo 'Pre-commit checks...' && exit 0"
+    "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
+    "robot": "nodemon ./src/wit.js --exec babel-node --presets es2015,stage-0"
   },
-  "pre-commit": ["precommit-msg", "build", "lint", "test"],
+  "pre-commit": [
+    "precommit-msg",
+    "build",
+    "lint",
+    "test"
+  ],
   "keywords": [],
   "author": "Marlon Gomes <marlon@getty.io>",
   "license": "ISC",
@@ -25,7 +31,8 @@
     "express": "^4.14.0",
     "express-jwt": "^3.4.0",
     "jsonwebtoken": "^7.0.1",
-    "mongoose": "^4.5.1"
+    "mongoose": "^4.5.1",
+    "node-wit": "^4.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
